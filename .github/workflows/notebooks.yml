@@ -1,0 +1,40 @@
+name: run notebooks
+
+# Every notebook runs end to end as a script, the check AGENTS.md asks for
+# before handing off: `uv run python 01_patch_and_spool.py` executes the cells in
+# dependency order without a browser, so a cell that raises fails the job.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A new push to the same branch supersedes the run in progress.
+concurrency:
+  group: notebooks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v10.0.1
+        with:
+          # The project floor. molab runs newer, so this is the one place
+          # the floor itself gets exercised.
+          python-version: "3.12"
+          enable-cache: true
+
+      - run: uv sync --locked
+
+      - run: |
+          for notebook in 0*_*.py; do
+            echo "::group::$notebook"
+            uv run --no-sync python "$notebook"
+            echo "::endgroup::"
+          done
