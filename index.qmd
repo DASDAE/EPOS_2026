@@ -7,6 +7,9 @@
 # would render it twice. `pagetitle` names the browser tab instead.
 pagetitle: "EPOS Workshop DASDAE Tutorial"
 description: "Data and code for the DASDAE fiber-optic sensing tutorial at the EPOS 2026 workshop."
+# Keep the readme's published URLs on GitHub, but navigate within this site.
+filters:
+  - scripts/local-site-links.lua
 format:
   html:
     # yeti is what dascore.org renders in, so the landing page and the docs

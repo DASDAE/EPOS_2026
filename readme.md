@@ -1,11 +1,11 @@
 # EPOS workshop tutorial
 
-**[dasdae.github.io/epos_2026](https://dasdae.github.io/epos_2026/)** -- the rendered site, with the slides and this page.
+**[dasdae.github.io/EPOS_2026](https://dasdae.github.io/EPOS_2026/)** -- the rendered site, with the slides and this page.
 
-Data and code for the EPOS 2026 workshop (based on the [Galileo_2026](https://github.com/dasdae/galileo_2026) material).
+Data and code for the EPOS 2026 workshop.
 
-- The [intro slides](https://dasdae.github.io/epos_2026/intro.html) set the session up
-- the [conclusion slides](https://dasdae.github.io/epos_2026/conclusions.html) close it.
+- The [intro slides](https://dasdae.github.io/EPOS_2026/intro.html) set the session up
+- the [conclusion slides](https://dasdae.github.io/EPOS_2026/conclusions.html) close it.
 
 # Learning objectives
 

@@ -117,20 +117,9 @@ Attaches to a spool for expressive querying and patch enrichment
 
 :::{.tight}
 :::{.incremental}
-1. **Use `Patch`**: filter, smooth, transform and plot (notebook 01)
+1. **Use `Spool` to manage and understand data archives and `Patch`** to process and plot (notebook 01)
 
-2. **Manage an archive with `Spool`**: subselect regions of interest, chunk, merge, reshape and visualize contents (notebook 01)
-
-3. **Track a deployment with `Inventory`**: attach metadata and enrich selection and patches (notebook 02)
-:::
-:::
-
-
-## Bonus (time permitting) {.smaller}
-
-:::{.tight}
-:::{.incremental}
-1. **Novel or Nonsense**: Evaluating research created by ChatGPT Sol and Claude Fable 5.
+2. **Track a deployment with `Inventory`**: attach metadata and enrich selection and patches (notebook 02)
 :::
 :::
 
