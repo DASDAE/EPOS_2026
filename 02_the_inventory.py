@@ -6,6 +6,9 @@
 #     "marimo>=0.24",
 #     "matplotlib>=3.10",
 #     "numba",
+#     "unidas>=0.1.2",
+#     "xdas>=0.2.9",
+#     "daspy-toolbox>=1.2.7",
 # ]
 # ///
 

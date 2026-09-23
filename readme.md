@@ -10,16 +10,18 @@ Data and code for the EPOS 2026 workshop (based on the [Galileo_2026](https://gi
 # Learning objectives
 
 1. **`Patch` and `Spool`** -- Manage and visualize data sources, perform simple processing. 
-2. **`Inventory`** -- Manage deployment metadata and integrate it into processing. 
+2. **`Inventory`** -- Manage deployment metadata and integrate it into processing.
+3. **`UniDAS`** -- Convert data between DASCore, Xdas and DASPy.
 
 # Contents
 
-We will primarily cover 2 notebooks that explain DASCore using a real research dataset.
+The first two notebooks introduce DASCore using a real research dataset. The third is a short introduction to moving data between DAS libraries with UniDAS.
 
 | Notebook | Topic | molab |
 | --- | --- | --- |
 | `01_patch_and_spool.py` | The `Patch`: filtering, transforms and plots | [![Open in molab](https://marimo.io/molab-shield.svg)](https://molab.marimo.io/github/DASDAE/epos_2026/blob/main/01_patch_and_spool.py) |
 | `02_the_inventory.py` | The observing system, with `Inventory` | [![Open in molab](https://marimo.io/molab-shield.svg)](https://molab.marimo.io/github/DASDAE/epos_2026/blob/main/02_the_inventory.py) |
+| `03_unidas.py` | Convert between DASCore, Xdas and DASPy | [![Open in molab](https://marimo.io/molab-shield.svg)](https://molab.marimo.io/github/DASDAE/epos_2026/blob/main/03_unidas.py) |
 
 # Background
 

@@ -14,9 +14,12 @@ dependencies = [
     # notebook nothing but its own file; keeping the two in step is manual.
     # AGENTS.md explains why it is that way.
     "dascore @ git+https://github.com/DASDAE/dascore@dev",
+    "daspy-toolbox>=1.2.7",
     "marimo>=0.24",
     "matplotlib>=3.10",
     "numba",
+    "unidas>=0.1.2",
+    "xdas>=0.2.9",
 ]
 
 [project.optional-dependencies]
