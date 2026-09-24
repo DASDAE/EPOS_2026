@@ -373,9 +373,9 @@ def _(mo):
 
 
 @app.cell
-def _(blast_time_zoom_2, mo, n180_patch):
+def _(blast_time_zoom_2, mo, n180_das_patch):
     # The wiggle plot is also helpful
-    _ax = n180_patch.select(time=blast_time_zoom_2).viz.wiggle(scale=0.5)
+    _ax = n180_das_patch.select(time=blast_time_zoom_2).viz.wiggle(scale=0.5)
     mo.mpl.interactive(_ax.figure)
     return
 
