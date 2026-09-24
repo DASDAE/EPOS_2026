@@ -373,10 +373,11 @@ wheels = [
 
 [[package]]
 name = "dascore"
-version = "0.1.22.dev337+gf45e259eb"
-source = { git = "https://github.com/DASDAE/dascore?rev=dev#f45e259eb962f2bb4bc08ab06da1e5fb1c19b757" }
+version = "0.1.23.dev411+g6178f0177"
+source = { git = "https://github.com/DASDAE/dascore?rev=dev#6178f0177bbcaf51114b62d709d6d6ead825fa77" }
 dependencies = [
     { name = "array-api-compat" },
+    { name = "filelock" },
     { name = "h5py" },
     { name = "matplotlib" },
     { name = "numpy" },
@@ -485,13 +486,22 @@ requires-dist = [
     { name = "marimo", specifier = ">=0.24" },
     { name = "matplotlib", specifier = ">=3.10" },
     { name = "numba" },
-    { name = "unidas", specifier = ">=0.1.2" },
+    { name = "unidas", specifier = ">=0.1.6" },
     { name = "xdas", specifier = ">=0.2.9" },
 ]
 provides-extras = ["bonus"]
 
 [package.metadata.requires-dev]
 dev = [{ name = "ruff", specifier = ">=0.9" }]
+
+[[package]]
+name = "filelock"
+version = "4.0.3"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/4f/b8/9ba8f569df649beb7058db5eb392a5f779bdbc3b82cf3942f0be439fb99e/filelock-4.0.3.tar.gz", hash = "sha256:87296d60478e14204fd9406e79831400fef76693bae2895deec236c98e87a8aa", size = 244309, upload-time = "2026-09-23T23:40:22.569Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/7a/6d/db8b86e168fef0cf904737e275bccb683558088ef971e92d3b41ce980699/filelock-4.0.3-py3-none-any.whl", hash = "sha256:30cd166e2aee2c7534ce2c33c6367c4cd051b8368e20e2c4eb0c34f699bacfab", size = 108444, upload-time = "2026-09-23T23:40:20.819Z" },
+]
 
 [[package]]
 name = "flexcache"
@@ -2482,14 +2492,14 @@ wheels = [
 
 [[package]]
 name = "unidas"
-version = "0.1.5"
+version = "0.1.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "numpy" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ae/6d/6b179eea5c0efaa68cf4d8c8901032716b1444eb130f95d8ac68224f3266/unidas-0.1.5.tar.gz", hash = "sha256:99328aa6a86ac0be9fd96e060ee355cbaf7572a77cda73f2db3aabb125278caf", size = 26523, upload-time = "2026-09-21T10:45:22.878Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/0e/90/e453bd7204ebdbb533c962e35411d6dc849337869a85bfb15e3bfe57a901/unidas-0.1.6.tar.gz", hash = "sha256:e23fca0d5bab91d55414391106c1cf5580d676b72ff611e686787a3aff406eac", size = 26528, upload-time = "2026-09-24T04:44:04.15Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/bd/89/67b463a4bd878f761739aaebadd617bc4adda203fc8ee886e684b531298c/unidas-0.1.5-py3-none-any.whl", hash = "sha256:3ee78ba86fafeaf68a40a812708b9eac7e98168ad1b053e40fb89ea5ca301a3e", size = 15521, upload-time = "2026-09-21T10:45:21.729Z" },
+    { url = "https://files.pythonhosted.org/packages/fe/f0/6d9876c8cf990d6ee70f041a8c20a3ac140d5ee11ac1572757d29a8cf4e0/unidas-0.1.6-py3-none-any.whl", hash = "sha256:5484b4855c07491e61441fbd32ea997fde193e77f027b211d6f2ed39c6332a7e", size = 15512, upload-time = "2026-09-24T04:44:03.132Z" },
 ]
 
 [[package]]

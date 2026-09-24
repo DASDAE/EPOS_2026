@@ -29,7 +29,7 @@ Every notebook carries the same PEP 723 header, which names the whole environmen
 #     "marimo>=0.24",
 #     "matplotlib>=3.10",
 #     "numba",
-#     "unidas>=0.1.2",
+#     "unidas>=0.1.6",
 #     "xdas>=0.2.9",
 #     "daspy-toolbox>=1.2.7",
 # ]

@@ -18,7 +18,7 @@ dependencies = [
     "marimo>=0.24",
     "matplotlib>=3.10",
     "numba",
-    "unidas>=0.1.2",
+    "unidas>=0.1.6",
     "xdas>=0.2.9",
 ]
 

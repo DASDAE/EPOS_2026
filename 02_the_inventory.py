@@ -6,7 +6,7 @@
 #     "marimo>=0.24",
 #     "matplotlib>=3.10",
 #     "numba",
-#     "unidas>=0.1.2",
+#     "unidas>=0.1.6",
 #     "xdas>=0.2.9",
 #     "daspy-toolbox>=1.2.7",
 # ]
@@ -194,7 +194,7 @@ def _(dc, get_data_path, inv):
     # get data path
     data_path = get_data_path()
 
-    # Create spool, make sure its up-to-date, attach inventory
+    # Create a spool, make sure it is up to date, and attach the inventory.
     spool = dc.spool(data_path).update().attach_inventory(inv)
     return (spool,)
 
@@ -276,7 +276,7 @@ def _(enriched):
     das_spool = (
         enriched.select(tag="DAS_LF", borehole="N*", leg="down")
         .expand_by("borehole")
-        # We just chunk with a large tolerance in order to force a merge; a few seconds of error in LF das is ok for us.
+        # Use a large tolerance to merge across the gaps in the LF DAS timestamps.
         .chunk(time=..., conflict="drop", tolerance=10)
     )
     return (das_spool,)
@@ -342,7 +342,7 @@ def _(enriched, np):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ### **Exercise (3.1)**
+    ### **Exercise 2.1**
 
     1) Take the low-frequency DAS data, keep only the downgoing leg of each borehole in the south drift, and work out how many channels that leaves.
 

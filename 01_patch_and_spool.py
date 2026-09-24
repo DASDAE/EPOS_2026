@@ -6,7 +6,7 @@
 #     "marimo>=0.24",
 #     "matplotlib>=3.10",
 #     "numba",
-#     "unidas>=0.1.2",
+#     "unidas>=0.1.6",
 #     "xdas>=0.2.9",
 #     "daspy-toolbox>=1.2.7",
 # ]
@@ -38,7 +38,7 @@ def _(mo):
     To install it outside of this notebook:
 
     ```bash
-    pip install git+github.com/dasdae/dascore::dev
+    pip install "dascore @ git+https://github.com/DASDAE/dascore@dev"
     ```
     ///
     """)
@@ -70,14 +70,12 @@ def _():
     # Set default mpl figuresize to better suit the notebook width
     plt.rcParams["figure.figsize"] = (10, 6)  # width, height in inches
 
-
     def get_downgoing(patch, hole):
-        """Trim th patch to only include downgoing leg for specific borehole."""
+        """Trim the patch to the downgoing leg of a specific borehole."""
         _d1, _d2 = borehole_distances[hole]
         # The borehole is a U, so the fiber runs down one leg and back up the other.
         _downgoing = (_d1, (_d1 + _d2) / 2)
         return patch.select(distance=_downgoing)
-
 
     return (
         blast_time_zoom_0,
@@ -115,7 +113,7 @@ def _(get_data_path, mo):
 
 @app.cell
 def _(data_path, dc):
-    # Next create the spool and make sure it is up-to-date, and select our DAS file.
+    # Next create the spool and make sure its index is up to date.
     spool = dc.spool(data_path).update()
     return (spool,)
 
@@ -151,7 +149,7 @@ def _(spool):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    Here we have DSS (distribued strain sensing), DAS (distributed acoustic sensing), and DAS_LF (DAS low-frequency) all managed in the same spool.
+    Here we have DSS (distributed strain sensing), DAS (distributed acoustic sensing), and DAS_LF (low-frequency DAS) all managed in the same spool.
     """)
     return
 
@@ -161,9 +159,9 @@ def _(mo):
     mo.md(r"""
     ### Selecting and shaping content
 
-    We use `select` a `chunk` to control the spool contents and shapes.
+    We use `select` and `chunk` to control the spool contents and shapes.
 
-    For example to get spools which select only DAS and LF_DAS data:
+    For example, to get spools that select only DAS and DAS_LF data:
     """)
     return
 
@@ -178,7 +176,7 @@ def _(spool):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    The DAS Spool now has one patch (data array with metdata)
+    The DAS spool now has one patch (a data array with metadata).
     """)
     return
 
@@ -192,7 +190,7 @@ def _(das_spool):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    But the lf_das spool has more. To merge these arrays together, so when we eventually load them, we use `chunk`.
+    The DAS_LF spool has more. We use `chunk` to group these arrays for merging when we load them.
     """)
     return
 
@@ -218,11 +216,11 @@ def _(das_lf_spool_chunked):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ### **Excercise 1.1**
+    ### **Exercise 1.1**
 
-    1) Use select to create a spool with all das-like tags.
+    1) Use `select` to create a spool with all DAS-like tags.
 
-    2) Use select to trim 2 seconds from the start and end of each patch.
+    2) Use `select` to trim 2 seconds from the start and end of each patch.
     """)
     return
 
@@ -245,10 +243,7 @@ def _(mo):
 @app.cell
 def _(das_spool):
     # Get the first patch in the spool and convert from phase angle to strain.
-    das_patch = (
-        das_spool[0]
-        .radians_to_strain()
-    )
+    das_patch = das_spool[0].radians_to_strain()
     return (das_patch,)
 
 
@@ -310,7 +305,7 @@ def _(mo):
 def _(spool):
     from dascore.units import seconds
 
-    spool.select(time=(2, -2), relative=True )
+    spool.select(time=(2, -2), relative=True)
     return
 
 
@@ -357,7 +352,7 @@ def _(blast_time_zoom_2, das_patch, mo):
 
 @app.cell
 def _(blast_time_zoom_2, das_patch, get_downgoing, mo):
-    # Select the down-going part of N180. 
+    # Select the down-going part of N180.
     n180_das_patch = get_downgoing(das_patch, "N180")
     _ax = n180_das_patch.select(time=blast_time_zoom_2).viz.waterfall()
     mo.mpl.interactive(_ax.figure)
@@ -421,18 +416,18 @@ def _(mo):
     mo.md(r"""
     ## Patch Processing
 
-    Let's set aside the strain offset questions for now and focus on the charge waveforms. To do this, it will be convinient to remove the offsets.
+    Let's set aside the strain offset questions for now and focus on the charge waveforms. To do this, it will be convenient to remove the offsets.
 
-    Let's test two approaches. The `Patch.pass_filter` is a standard Butterworth filter, and a simple time derivative.
+    Let's test two approaches: a standard Butterworth filter with `Patch.pass_filter`, and a simple time derivative.
     """)
     return
 
 
 @app.cell
 def _(blast_time_zoom_0, n180_das_patch):
-    # Use select again to trim the patch. 
+    # Use select again to trim the patch.
     n180_first_blast_das = n180_das_patch.select(
-        time=blast_time_zoom_0  # trim distance coordiante
+        time=blast_time_zoom_0  # trim the time coordinate
     )
     return (n180_first_blast_das,)
 
@@ -442,16 +437,15 @@ def _(mo, n180_first_blast_das, plt):
     # Apply the pass filter.
     n180_blast_filtered = n180_first_blast_das.pass_filter(time=(5, 200))
 
-    # versus a temporal deriviative
+    # versus a temporal derivative
     n180_blast_derivative = n180_first_blast_das.differentiate("time")
 
-
-    # Setup and display both wiggle plots side by side.
+    # Set up and display both wiggle plots side by side.
     # Wiggle trace spacing depends on amplitude, so keep the y axes independent.
     _fig, _axes = plt.subplots(1, 2, figsize=(12, 6), sharex=True)
     n180_blast_derivative.viz.wiggle(ax=_axes[0], scale=0.5)
     n180_blast_filtered.viz.wiggle(ax=_axes[1], scale=0.5)
-    _axes[0].set_title("strain raite")
+    _axes[0].set_title("strain rate")
     _axes[1].set_title("bandpass 5 to 200 Hz")
     mo.mpl.interactive(_fig)
     return (n180_blast_derivative,)
@@ -571,9 +565,9 @@ def _(n180_spectrum):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ### Excersise 1.2
+    ### **Exercise 1.2**
 
-    Why is there such a strong frequency comb? Can you show it with peak_times?
+    Why is there such a strong frequency comb? Can you show it with `peak_times`?
     """)
     return
 
@@ -649,7 +643,7 @@ def _(cc, distance, intercept, slope):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ### **Exercise (1.3)**:
+    ### **Exercise 1.3**
 
     Make a plot of the low-frequency DAS patch, starting after the last blast. Do you notice any permanent offset?
     """)

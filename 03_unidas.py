@@ -1,14 +1,14 @@
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
-#     "dascore @ git+https://github.com/DASDAE/dascore@dev",
-#     "daspy-toolbox>=1.2.7",
 #     "epos-2026 @ git+https://github.com/DASDAE/epos_2026@main",
+#     "dascore @ git+https://github.com/DASDAE/dascore@dev",
 #     "marimo>=0.24",
 #     "matplotlib>=3.10",
 #     "numba",
-#     "unidas>=0.1.2",
+#     "unidas>=0.1.6",
 #     "xdas>=0.2.9",
+#     "daspy-toolbox>=1.2.7",
 # ]
 # ///
 import marimo
